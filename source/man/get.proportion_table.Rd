@@ -30,4 +30,4 @@ This function returns the beta-value and detection p-value proportion table with
 \examples{
 proportion_table <- get.proportion_table(beta.value=beta, detecP=detecP)
 }
-\keyword{proportion_table}
+\keyword{get.proportion_table}

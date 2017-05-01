@@ -1,5 +1,5 @@
 Package: sest
-Title: sex-estimating sample sex from methylation microarray data
+Title: An R-package for estimating the sex from methylation microarray data (Infinium HumanMethylation450k)
 Version: 0.0.0.9000
 Authors@R: c(person("Chol-hee", "JUNG", email = "jung.cholhee@gmail.com", role = c("aut", "cre"))) 
 Description: Tool to estimate the sex of Illumina Infinium methylation array data (HM450k).

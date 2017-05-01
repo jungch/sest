@@ -8,7 +8,7 @@
 #' @param p.intervals.X	Intervals of detection p-value of X chromosome probes within each of which the proportion is calculated. Default is -Inf to 1e-18m 1e-18 to 1e-5, 1e-5 to 1e-2, 1e-2 to 0.
 #' @param p.intervals.Y	Intervals of detection p-value of Y chromosome probes within each of which the proportion is calculated. Default is the same as that of 'p.intervals.X'
 #' @param samples	list of samples to calculate beta/detection p-value proportions. If NULL (default) all samples in the beta-value and detection p-value matrices are used.
-#' @keywords	proportion_table
+#' @keywords	get.proportion_table
 #' @export
 #' @examples
 #' proportion_table <- get.proportion_table(beta.value=beta, detecP=detecP)
