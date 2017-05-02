@@ -29,7 +29,7 @@ estimateSex <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=seq(0,1,0
 	columns.Y <- c(DNAm_columns.Y, pval_columns.Y)
 
 	# obtain proportion table for test samples
-	tab.prop.test <- .get.proportion_table(beta.value, detecP, beta.intervals.X, beta.intervals.Y, p.intervals.X, p.intervals.Y)
+	tab.prop.test <- get.proportion_table(beta.value, detecP, beta.intervals.X, beta.intervals.Y, p.intervals.X, p.intervals.Y)
 	samples.test <- rownames(tab.prop.test)
 
 	# merge reference set and test set.
