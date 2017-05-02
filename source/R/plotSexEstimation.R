@@ -22,7 +22,7 @@ plotSexEstimation <- function(sex_estimation = NULL, samples=NULL, main="", file
 
 			g_point <- g_point + geom_point(data=tab.reference, aes(x=X.PC1, y=Y.PC1, shape=predicted), col=reference_color, alpha=0.8, cex=2) + labs(shape="reference set") + scale_shape_manual(values=reference_shape)
 		} else {
-			cat("warining: no information on 'reference' set\n")
+			cat("warining: no information on 'reference' set in the 'estimateSex' result.\n")
 		}
 	} else {
 		if ("reference" %in% names(sex_estimation)) {
