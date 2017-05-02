@@ -8,4 +8,4 @@ An R-package for estimating the sex from the Infinium HumanMethylation 450k micr
 
 3) In command line: > R CMD INSTALL '/path/to/sest.tar'
 
-4) Or, in R environment: > install.package(pkgs="/path/to/sest.tar", repos=NULL, type="source")
+4) Or, in R environment: > install.packages(pkgs="/path/to/sest.tar", repos=NULL, type="source")
