@@ -32,6 +32,9 @@ plotSexDistribution <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=s
 	columns.X <- c(DNAm_columns.X, pval_columns.X)
 	columns.Y <- c(DNAm_columns.Y, pval_columns.Y)
 
+	beta_range <- unlist(lapply(strsplit(DNAm_columns.X, ":"), function(x) x[2]))
+	pval_range <- unlist(lapply(strsplit(pval_columns.Y, ":"), function(x) x[2]))
+
 	chr_annotate <- data.frame(row.names=c("chrX", "chrY"), xpos = rep(Inf, 2), ypos = rep(Inf, 2), annotateText = c("chrX", "chrY"), hjustvar = rep(1, 2), vjustvar = rep(1, 2))
 
 	g.ref.X.beta <- ggplot() + ylim(0,0.45) + theme_bw()
@@ -47,9 +50,9 @@ plotSexDistribution <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=s
 
 		g.ref.X.beta <- g.ref.X.beta + geom_line(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% DNAm_columns.X, ], aes(x=range, y=proportion, group=sample, col=sex), alpha=0.01, lty=2) + geom_boxplot(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% DNAm_columns.X, ], aes(x=range, y=proportion, fill=sex), alpha=0.2)
 
-		g.ref.Y.beta <- g.ref.Y.beta + ylim(0,0.45) + geom_line(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% DNAm_columns.Y, ], aes(x=range, y=proportion, group=sample, col=sex), alpha=0.01, lty=2) + geom_boxplot(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% DNAm_columns.Y, ], aes(x=range, y=proportion, fill=sex), alpha=0.2)
+		g.ref.Y.beta <- g.ref.Y.beta + geom_line(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% DNAm_columns.Y, ], aes(x=range, y=proportion, group=sample, col=sex), alpha=0.01, lty=2) + geom_boxplot(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% DNAm_columns.Y, ], aes(x=range, y=proportion, fill=sex), alpha=0.2)
 
-		g.ref.Y.p <- g.ref.Y.p + ylim(0,1.00) + geom_line(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% pval_columns.Y, ], aes(x=range, y=proportion, group=sample, col=sex), alpha=0.01, lty=2) + geom_boxplot(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% pval_columns.Y, ], aes(x=range, y=proportion, fill=sex), alpha=0.2)
+		g.ref.Y.p <- g.ref.Y.p + geom_line(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% pval_columns.Y, ], aes(x=range, y=proportion, group=sample, col=sex), alpha=0.01, lty=2) + geom_boxplot(data=tab.prop.reference.melted[tab.prop.reference.melted$range %in% pval_columns.Y, ], aes(x=range, y=proportion, fill=sex), alpha=0.2)
 	}
 
 
@@ -80,15 +83,13 @@ plotSexDistribution <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=s
 		color <- "#984ea3"
 	}
 
-	g.ref.X.beta <- g.ref.X.beta + geom_text(data=chr_annotate["chrX",], aes(x=xpos, y=ypos, hjust=hjustvar, vjust=vjustvar,label=annotateText)) + scale_color_manual(values=color.annots$sex.colors) + scale_fill_manual(values=color.annots$sex.colors) + scale_x_discrete(labels=beta_range) + xlab("beta-value range") + ylab("proportion") + guides(fill=FALSE, col=FALSE) + theme(axis.text.x = element_text(angle=30, hjust=1))
-	g.ref.Y.beta <- g.ref.Y.beta + geom_text(data=chr_annotate["chrY",], aes(x=xpos, y=ypos, hjust=hjustvar, vjust=vjustvar,label=annotateText)) + scale_color_manual(values=color.annots$sex.colors) + scale_fill_manual(values=color.annots$sex.colors) + scale_x_discrete(labels=beta_range) + xlab("beta-value range") + ylab("proportion") + guides(fill=FALSE, col=FALSE) + theme(axis.text.x = element_text(angle=30, hjust=1))
-	g.ref.Y.p <- g.ref.Y.p + geom_text(data=chr_annotate["chrY",], aes(x=xpos, y=ypos, hjust=hjustvar, vjust=vjustvar,label=annotateText)) + scale_color_manual(values=color.annots$sex.colors) + scale_fill_manual(values=color.annots$sex.colors) + scale_x_discrete(labels=pval_range) + xlab("detection p-value range (log10)") + ylab("proportion") + theme(legend.position="bottom") + guides(col=FALSE) + labs(fill="reference set")
+	g.ref.X.beta <- g.ref.X.beta + geom_text(data=chr_annotate["chrX",], aes(x=xpos, y=ypos, hjust=hjustvar, vjust=vjustvar,label=annotateText)) + scale_color_manual(values=color.annots$sex.colors) + scale_fill_manual(values=color.annots$sex.colors) + scale_x_discrete(labels=beta_range) + xlab("beta-value range") + guides(fill=FALSE, col=FALSE) + theme(axis.text.x = element_text(angle=30, hjust=1))
+	g.ref.Y.beta <- g.ref.Y.beta + geom_text(data=chr_annotate["chrY",], aes(x=xpos, y=ypos, hjust=hjustvar, vjust=vjustvar,label=annotateText)) + scale_color_manual(values=color.annots$sex.colors) + scale_fill_manual(values=color.annots$sex.colors) + scale_x_discrete(labels=beta_range) + xlab("beta-value range") + guides(fill=FALSE, col=FALSE) + theme(axis.text.x = element_text(angle=30, hjust=1))
+	g.ref.Y.p <- g.ref.Y.p + geom_text(data=chr_annotate["chrY",], aes(x=xpos, y=ypos, hjust=hjustvar, vjust=vjustvar,label=annotateText)) + scale_color_manual(values=color.annots$sex.colors) + scale_fill_manual(values=color.annots$sex.colors) + scale_x_discrete(labels=pval_range) + xlab("detection p-value range (log10)") + theme(legend.position="bottom") + guides(col=FALSE) + labs(fill="reference set")
 
 
-	#g_box <- g_box + geom_point(data=tab.prop.test.melted, aes(x=range, y=proportion), pch=4, col=color, alpha=0.8)
 	d.X.beta <- geom_line(data=tab.prop.test.melted[tab.prop.test.melted$range %in% DNAm_columns.X,], aes(x=range, y=proportion, group=sample), col=color)
 	d.Y.beta <- geom_line(data=tab.prop.test.melted[tab.prop.test.melted$range %in% DNAm_columns.Y,], aes(x=range, y=proportion, group=sample), col=color)
-	#d.X.p <- geom_line(data=tab.prop.test.melted[tab.prop.test.melted$range %in% pval_columns.X,], aes(x=range, y=proportion, group=sample), col=color, alpha=0.5)
 	d.Y.p <- geom_line(data=tab.prop.test.melted[tab.prop.test.melted$range %in% pval_columns.Y,], aes(x=range, y=proportion, group=sample), col=color)
 
 	g.X.beta <- g.ref.X.beta + d.X.beta
