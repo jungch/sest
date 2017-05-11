@@ -35,7 +35,7 @@ plotSexDistribution <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=s
 	beta_range <- unlist(lapply(strsplit(DNAm_columns.X, ":"), function(x) x[2]))
 	pval_range <- unlist(lapply(strsplit(pval_columns.Y, ":"), function(x) x[2]))
 
-	chr_annotate <- data.frame(row.names=c("chrX", "chrY"), xpos = rep(Inf, 2), ypos = rep(Inf, 2), annotateText = c("chrX", "chrY"), hjustvar = rep(1, 2), vjustvar = rep(1, 2))
+	chr_annotate <- data.frame(row.names=c("chrX", "chrY"), xpos = rep(Inf, 2), ypos = rep(Inf, 2), annotateText = c("chrX", "chrY"), hjustvar = rep(1.2, 2), vjustvar = rep(1.5, 2))
 
 	g.ref.X.beta <- ggplot() + ylim(0,0.45) + theme_bw()
 	g.ref.Y.beta <- ggplot() + ylim(0,0.45) + theme_bw()
@@ -100,7 +100,7 @@ plotSexDistribution <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=s
 		pdf(filename)
 	}
 
-	print(grid.arrange(g.X.beta, g.Y.beta, g.Y.p, ncol=1))
+	print(grid.arrange(g.X.beta+ggtitle("A"), g.Y.beta+ggtitle("B"), g.Y.p+ggtitle("C"), ncol=1))
 		
 	if (is.character(filename)) {
 		dev.off()
