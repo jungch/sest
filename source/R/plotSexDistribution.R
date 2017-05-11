@@ -21,7 +21,7 @@
 plotSexDistribution <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=seq(0,1,0.1), beta.intervals.Y=seq(0,1,0.1), p.intervals.X=c(-18,-5,-2,0), p.intervals.Y=c(-18,-5,-2,0), samples=NULL, filename=NULL, include_reference=TRUE, color=NULL){
 
 	# prepare the plot for reference samples
-	tab.prop.reference <- get.proportion_table.base_prop(beta.intervals.X, beta.intervals.Y, p.intervals.X, p.intervals.Y)
+	tab.prop.reference <- .get.proportion_table.base_prop(beta.intervals.X, beta.intervals.Y, p.intervals.X, p.intervals.Y)
 
 	DNAm_columns <- colnames(tab.prop.reference)[grep(colnames(tab.prop.reference), pattern="^p.", invert=TRUE)]
 	DNAm_columns.X <- colnames(tab.prop.reference)[grep(colnames(tab.prop.reference), pattern="^X:", invert=FALSE)]
