@@ -37,32 +37,33 @@ head(sex.GSE51032.good$test)
 ```{r}
 plotSexEstimation(sex.GSE51032.good)
 ```
+![plotSexEstimation without reference](figure/unnamed-chunk-6-1.png)
 
 ### Plot of sex-estimation result by 'plotSexEstimation', including reference samples:
 ```{r}
 plotSexEstimation(sex.GSE51032.good, include_reference = TRUE)
-
 ```
-
 
 Distribution profile plot of Male-predicted samples by 'plotSexDistribution':
 ```{r}
 samples.GSE51032.good.M <- rownames(sex.GSE51032.good$test)[sex.GSE51032.good$test$predicted == "M"]
 plotSexDistribution(beta.value=beta.bg.XY, detecP=p.XY, samples=samples.GSE51032.good.M)
 ```
+![plotSexDistribution, male-predicted samples](figure/unnamed-chunk-7-1.png)
 
 Distribution profile plot of Female-predicted samples by 'plotSexDistribution':
 ```{r}
 samples.GSE51032.good.F <- rownames(sex.GSE51032.good$test)[sex.GSE51032.good$test$predicted == "F"]
 plotSexDistribution(beta.value=beta.bg.XY, detecP=p.XY, samples=samples.GSE51032.good.F)
 ```
+![plotSexDistribution, female-predicted samples](figure/unnamed-chunk-8-1.png)
 
 Distribution profile plot of N-predicted samples by 'plotSexDistribution':
 ```{r}
 samples.GSE51032.good.N <- rownames(sex.GSE51032.good$test)[sex.GSE51032.good$test$predicted == "N"]
 plotSexDistribution(beta.value=beta.bg.XY, detecP=p.XY, samples=samples.GSE51032.good.N)
-
 ```
+![plotSexDistribution, N-predicted samples](figure/unnamed-chunk-9-1.png)
 
 
 
@@ -72,3 +73,4 @@ sex.GSE51032.good.5 <- estimateSex(beta.value=beta.bg.XY[, samples.GSE51032.good
 
 plotSexEstimation(sex.GSE51032.good.5)
 ```
+![plotSexEstimation, using wider beta-value intervals](figure/unnamed-chunk-10-1.png)
