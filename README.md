@@ -19,13 +19,7 @@ $> R CMD INSTALL '/path/to/sest.tar'
 
 
 ## Example
+[Here](example/sEst_example.md) is an example scenario of estimating the sex of HM450k data samples.
+This example uses a publicly available dataset from GEO (GSE51032).
 
-loading thelibrary and data.
-```{r}
-library(sest)
 
-load("../data_preparation/beta.bg.XY.rda")
-load("../data_preparation/p.XY.rda")
-load("../data_preparation/pd.rda")
-load("../data_preparation/QC.rda")
-```
