@@ -37,6 +37,7 @@ names(sex.GSE51032.good)
 ```{r}
 head(sex.GSE51032.good$reference)
 ```
+
 | X.PC1 |Y.PC1 | predicted.X | predicted.Y | predicted
 -|------|------|-------------|-------------|-----------
 male.0001	| -0.2537145 | -0.6624954 |	M	| M	| M
@@ -50,6 +51,7 @@ male.0006	| -0.2634860 | -0.6528368 |	M |	M |	M
 ```{r}
 head(sex.GSE51032.good$test)
 ```
+
 | X.PC1 |Y.PC1 | predicted.X | predicted.Y | predicted
 -|------|------|-------------|-------------|-----------
 6969568099_R02C02	| 0.1490050	| 0.3504673	| F	| F	| F
