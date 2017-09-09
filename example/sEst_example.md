@@ -37,8 +37,7 @@ names(sex.GSE51032.good)
 ```{r}
 head(sex.GSE51032.good$reference)
 ```
-
-| X.PC1 |Y.PC1 | predicted.X | predicted.Y | predicted
+Sample| X.PC1 |Y.PC1 | predicted.X | predicted.Y | predicted
 -|------|------|-------------|-------------|-----------
 male.0001	| -0.2537145 | -0.6624954 |	M	| M	| M
 male.0002	| -0.2798323 | -0.6596785 |	M |	M |	M
@@ -51,8 +50,7 @@ male.0006	| -0.2634860 | -0.6528368 |	M |	M |	M
 ```{r}
 head(sex.GSE51032.good$test)
 ```
-
-| X.PC1 |Y.PC1 | predicted.X | predicted.Y | predicted
+Sample| X.PC1 |Y.PC1 | predicted.X | predicted.Y | predicted
 -|------|------|-------------|-------------|-----------
 6969568099_R02C02	| 0.1490050	| 0.3504673	| F	| F	| F
 6969568052_R02C01	| 0.1546120	| 0.4023443	| F	| F	| F
@@ -109,4 +107,4 @@ plotSexEstimation(sex.GSE51032.good.5)
 ```
 ![plotSexEstimation, using wider beta-value intervals](figure/unnamed-chunk-10-1.png)
 
-Although the default beta-value intervals and that in the example above uses a fixed value for the increment, the increment value can vary. E.g., something like 'beta.intervals.X = c(0, 0.2, 0.4, 0.5, 0.6, 0.8, 0.10)' is possible. Users can change the intervals of detection p-value too by modifying 'p.intervals.X' or 'p.intervals.Y.'.
+Although the beta-value intervals in this example use a fixed value for the increment, the increment value can vary. E.g., something like 'beta.intervals.X = c(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0)' is possible. Users can change the intervals of detection p-value too by using 'p.intervals.X' and/or 'p.intervals.Y.' options.
