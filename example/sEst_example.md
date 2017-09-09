@@ -33,6 +33,7 @@ sex.GSE51032.good <- estimateSex(beta.value=beta.bg.XY[, samples.GSE51032.good],
 names(sex.GSE51032.good)
 [1] "test"      "reference"
 ```
+
 ```{r}
 head(sex.GSE51032.good$reference)
 ```
