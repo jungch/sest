@@ -1,5 +1,5 @@
 # sEst
-An R-package for estimating the sex from the Infinium HumanMethylation 450k microarray data
+An R-package for estimating the sex from DNA methylation microarray data
 
 ## Installation
 ### 1) Click on 'sest.tar' file.
