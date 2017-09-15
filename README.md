@@ -2,19 +2,18 @@
 An R-package for estimating the sex from DNA methylation microarray data
 
 ## Installation
-### 1) Click on 'sest.tar' file.
+### 1) Click on the package source file ('sest_0.9.0.tar').
 
 ### 2) Click on the 'Download' button.
 
 ### 3) Install the package from source:
-
-#### a) In command line:
-```{bash}
-R CMD INSTALL '/path/to/sest.tar'
+a) In command line:
 ```
-#### b) Or, in R environment:
+R CMD INSTALL '/path/to/package source'
+```
+b) Or, in R environment:
 ```{r}
-install.packages(pkgs="/path/to/sest.tar", repos=NULL, type="source")
+install.packages(pkgs="/path/to/package source", repos=NULL, type="source")
 ```
 
 ## Example codes
