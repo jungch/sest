@@ -2,7 +2,7 @@
 An R-package for estimating the sex from DNA methylation microarray data
 
 ## Installation
-### 1) Click on the package source file ('sest_0.9.0.tar').
+### 1) Click on the package source file ('sest.tar').
 
 ### 2) Click on the 'Download' button.
 
