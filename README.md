@@ -15,6 +15,10 @@ b) Or, in R environment:
 ```{r}
 install.packages(pkgs="/path/to/package source", repos=NULL, type="source")
 ```
+### Alternatively:
+```{r}
+install.packages(pkgs="https://github.com/jungch/sest/raw/master/sest.tar", repos=NULL, type="source")
+```
 
 ## Example codes
 [Here](example/sEst_example.md) is an example scenario of estimating the sex of HM450k data samples.
