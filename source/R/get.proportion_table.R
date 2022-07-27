@@ -1,12 +1,12 @@
 #' get.proportion_table Function
 #'
 #' This function returns the beta-value and detection p-value proportion table within each intervals specified by parameters.
-#' @param beta-value	beta-value matrix 
+#' @param beta-value	beta-value matrix
 #' @param detecP	detection p-value matrix
-#' @param beta.intervals.X	Intervals of beta-value of X chromosome probes within each of which the proportion is calculated. Default is 'seq(0,1,0.1)', which is 0 to 0.1, 0.1 to 0.2, ..., 0.9 to 1.0. 
-#' @param beta.intervals.Y	Intervals of beta-value of Y chromosome probes within each of which the proportion is calculated. Default is the same as that of 'beta.intervals.X'
+#' @param beta.intervals.X	Intervals of beta-value of X chromosome probes within each of which the proportion is calculated. Default is 'seq(0,1,0.1)', which is 0 to 0.1, 0.1 to 0.2, ..., 0.9 to 1.0.
+#' @param beta.intervals.Y	Intervals of beta-value of Y chromosome probes within each of which the proportion is calculated. Default is the same as that of 'beta.intervals.X'.
 #' @param p.intervals.X	Intervals of detection p-value of X chromosome probes within each of which the proportion is calculated. Default is -Inf to 1e-18m 1e-18 to 1e-5, 1e-5 to 1e-2, 1e-2 to 0.
-#' @param p.intervals.Y	Intervals of detection p-value of Y chromosome probes within each of which the proportion is calculated. Default is the same as that of 'p.intervals.X'
+#' @param p.intervals.Y	Intervals of detection p-value of Y chromosome probes within each of which the proportion is calculated. Default is the same as that of 'p.intervals.X'.
 #' @param samples	list of samples to calculate beta/detection p-value proportions. If NULL (default) all samples in the beta-value and detection p-value matrices are used.
 #' @keywords	get.proportion_table
 #' @export
@@ -36,8 +36,22 @@ get.proportion_table <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=
 		return (NULL)
 	}
 
-	probes.X <- probes.noSNP.X[probes.noSNP.X %in% rownames(beta.value)]
-	probes.Y <- probes.noSNP.Y[probes.noSNP.Y %in% rownames(beta.value)]
+	probes.X.hm450k <- probes.HM450k.X[probes.HM450k.X %in% rownames(beta.value)]
+	probes.Y.hm450k <- probes.HM450k.Y[probes.HM450k.Y %in% rownames(beta.value)]
+	probes.X.epic <- probes.EPIC.X[probes.EPIC.X %in% rownames(beta.value)]
+	probes.Y.epic <- probes.EPIC.Y[probes.EPIC.Y %in% rownames(beta.value)]
+
+	if(length(probes.X.epic) > length(probes.X.hm450k)) {
+		probes.X <- probes.X.epic
+		probes.Y <- probes.Y.epic
+		probes.noSNP.X <- probes.EPIC.X
+		probes.noSNP.Y <- probes.EPIC.Y
+	} else {
+		probes.X <- probes.X.hm450k
+		probes.Y <- probes.Y.hm450k
+		probes.noSNP.X <- probes.HM450k.X
+		probes.noSNP.Y <- probes.HM450k.Y
+	}
 
 
 	tab.prop.test.beta.X <- do.call(rbind, lapply(as.list(samples), function(x) table(cut(beta.value[probes.X, x], breaks=beta.intervals.X, include.lowest=FALSE))/length(probes.noSNP.X)))
@@ -54,4 +68,5 @@ get.proportion_table <- function(beta.value=NULL, detecP=NULL, beta.intervals.X=
 	rownames(tab.prop.test) <- samples
 	return (tab.prop.test)
 }
+
 
